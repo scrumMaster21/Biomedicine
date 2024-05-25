@@ -78,12 +78,22 @@ turnToRna(gen, "Changes.txt")
 
 
 #function to count how many times each base appears in given sequence
+#and to calculate percentage of CG compared to other bases
 def countBases(s, file):
 	seq_length = len(s)
 	print('Total number of bases:', seq_length)
 	char_count = collections.Counter(s)
 	print('Number of occurences of each base in sequence:', char_count)
+	gc = 0
+	percent_gc = 0
+		for c in s:
+			for i in range(len(s)):
+				if s[i] == 'C' or s[i] == 'G':
+					gc += 1
+	if gc > 0:
+		percent_gc = seq_length / gc * 100	
 	with open(file, 'a') as count_file:
-		count_file.write(seq_length, char_count)
+		count_file.write(seq_length, char_count, percent_gc)
 	count_file.close()
 countBases(gen, "Count.txt")
+
