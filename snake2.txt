@@ -1,3 +1,9 @@
+#####Gia thn ektelesh se terminal:
+#python
+#cd [to path pou vrisketai to arxeio]
+#python nameoffile
+#exit() #gia na stamathsoume na trexoume python
+
 import re
 import collections
 
@@ -11,7 +17,7 @@ tf3 = 'BTGGGARD'
 p3 = r"([^A](TGGGA)[AG][^C])"
 
 #function to read the sequence
-def readDna(file)
+def readDna(file):
 	sequence = ''
 	with open(file, 'r') as dna:
 		for line in dna:
@@ -96,4 +102,3 @@ def countBases(s, file):
 		count_file.write(seq_length, char_count, percent_gc)
 	count_file.close()
 countBases(gen, "Count.txt")
-
