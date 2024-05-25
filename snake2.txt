@@ -34,7 +34,7 @@ def findTranscriptionFactors(s):
 	f1 = 0
 	f2 = 0
 	f3 = 0
-	while i < len(s)
+	while i < len(s):
 		i += 1
 		find1 = re.finditer(p1, s)
 		find2= re.finditer(p2, s)
