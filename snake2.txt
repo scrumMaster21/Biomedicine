@@ -55,12 +55,12 @@ findTranscriptionFactors(gen)
 def complementGenome(s, file):
 	complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
 	emoneg = ''
-	with open(file, 'a') as changesfile:
+	with open(file, 'a') as changes_file:
 		for base in s:
 			emoneg = emoneg + complement[base]
-			changesfile.write(emoneg)
-	changesfile.write('\n')
-	changesfile.close()
+			changes_file.write(emoneg)
+	changes_file.write('\n')
+	changes_file.close()
 complementGenome(gen, "Changes.txt")
 
 
@@ -68,19 +68,22 @@ complementGenome(gen, "Changes.txt")
 def turnToRna(s, file):
 	transcr = {'T': 'U'}
 	rna = ''
-	with open(file, 'a') as changesfile:
+	with open(file, 'a') as changes_file:
 		for base in s:
 			rna = rna + transcr[base]
-			changesfile.write(rna, 'a')
-	changesfile.write('\n')
-	changesfile.close()
+			changes_file.write(rna)
+	changes_file.write('\n')
+	changes_file.close()
 turnToRna(gen, "Changes.txt")
 
 
 #function to count how many times each base appears in given sequence
-def countBases(s):
+def countBases(s, file):
 	seq_length = len(s)
 	print('Total number of bases:', seq_length)
 	char_count = collections.Counter(s)
-	print(char_count)
-countBases(gen)
+	print('Number of occurences of each base in sequence:', char_count)
+	with open(file, 'a') as count_file:
+		count_file.write(seq_length, char_count)
+	count_file.close()
+countBases(gen, "Count.txt")
