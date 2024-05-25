@@ -66,11 +66,11 @@ complementGenome(gen, "Changes.txt")
 
 #function to create the sequence after transcription to rna
 def turnToRna(s, file):
-	metagrafh = {'T': 'U'}
+	transcr = {'T': 'U'}
 	rna = ''
 	with open(file, 'a') as changesfile:
 		for base in s:
-			rna = rna + metagrafh[base]
+			rna = rna + transcr[base]
 			changesfile.write(rna, 'a')
 	changesfile.write('\n')
 	changesfile.close()
@@ -79,5 +79,8 @@ turnToRna(gen, "Changes.txt")
 
 #function to count how many times each base appears in given sequence
 def countBases(s):
-	collections.Counter(s)
+	seq_length = len(s)
+	print('Total number of bases:', seq_length)
+	char_count = collections.Counter(s)
+	print(char_count)
 countBases(gen)
