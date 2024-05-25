@@ -21,7 +21,7 @@ print(gen)
 
 def findTranscriptionFactors(s):
 	i = 0
-	matches = open("Matches.txt", "w")
+	matches = open("Matches.txt", "a")
 	f1 = 0
 	f2 = 0
 	f3 = 0
@@ -33,15 +33,15 @@ def findTranscriptionFactors(s):
 		
 	if find1 :
 		f1 += 1
-		matches.write(',', find1)
+		matches.write(find1, '\n')
 		print('Match found for' + tf1 + 'at position' + find1.start())
 	if found2:
 		f2 += 1
-		matches.write(',', find2)
+		matches.write(find2, '\n')
 		print('Match found for' + tf2 + 'at position' + find2.start())
 	if found3:
 		f3 += 1
-		matches.write(',', find3)
+		matches.write(find3, '\n')
 		print('Match found for' + tf3 + 'at position' + find3.start())
 
 	matches.close()
