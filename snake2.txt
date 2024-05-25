@@ -1,0 +1,80 @@
+import re
+
+tf1 = 'BHTGTGGTYW'
+p1 = r"([^A][^G](TGTGGT)[CT][AT])"
+
+tf2 = 'WGACAGB'
+p2 = r"([AT](GACAG)[^A])"
+
+tf3 = 'BTGGGARD'
+p3 = r"([^A](TGGGA)[AG][^C])"
+
+def readDna(file)
+	sequence = ''
+	with open(file, 'r') as dna:
+		for line in dna:
+			if not line[0] == '>':
+				sequence += line.rstrip()
+	return sequence
+gen = readDna('Sequence.txt')
+print(gen)
+
+def findTranscriptionFactors(s):
+	i = 0
+	matches = open("Matches.txt", "w")
+	f1 = 0
+	f2 = 0
+	f3 = 0
+	while i < len(s)
+		i += 1
+		find1 = re.finditer(p1, s)
+		find2= re.finditer(p2, s)
+		find3 = re.finditer(p3, s)
+		
+	if find1 :
+		f1 += 1
+		matches.write(',', find1)
+		print('Match found for' + tf1 + 'at position' + find1.start())
+	if found2:
+		f2 += 1
+		matches.write(',', find2)
+		print('Match found for' + tf2 + 'at position' + find2.start())
+	if found3:
+		f3 += 1
+		matches.write(',', find3)
+		print('Match found for' + tf3 + 'at position' + find3.start())
+
+	matches.close()
+findTranscriptionFactors(gen)
+
+
+def complementGenome(s, file):
+	complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+	emoneg = ''
+	with open(file, 'w') as changesfile:
+		for base in s:
+			emoneg = emoneg + complement[base]
+			changesfile.write(emoneg, 'a')
+			changesfile.write('\n')
+	changesfile.close()
+complementGenome(gen, "Changes.txt")
+
+
+def turnToRna(s, file):
+	metagrafh = {'T': 'U'}
+	rna = ''
+	with open(file, 'w') as changesfile:
+		for base in s:
+			rna = rna + metagrafh[base]
+			changesfile.write(emoneg, 'a')
+			changesfile.write('\n')
+	changesfile.close()
+turnToRna(gen, "Changes.txt")
+
+
+def countBases(s):
+	number = {'A': 0, 'T': 0, 'C': 0, 'G': 0}
+	for base in s:
+		number[base] +=1
+	print(number)
+countBases(gen)
