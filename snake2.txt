@@ -66,7 +66,7 @@ def turnToRna(s, file):
 	with open(file, 'w') as changesfile:
 		for base in s:
 			rna = rna + metagrafh[base]
-			changesfile.write(emoneg, 'a')
+			changesfile.write(rna, 'a')
 			changesfile.write('\n')
 	changesfile.close()
 turnToRna(gen, "Changes.txt")
