@@ -51,11 +51,11 @@ findTranscriptionFactors(gen)
 def complementGenome(s, file):
 	complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
 	emoneg = ''
-	with open(file, 'w') as changesfile:
+	with open(file, 'a') as changesfile:
 		for base in s:
 			emoneg = emoneg + complement[base]
-			changesfile.write(emoneg, 'a')
-			changesfile.write('\n')
+			changesfile.write(emoneg)
+	changesfile.write('\n')
 	changesfile.close()
 complementGenome(gen, "Changes.txt")
 
@@ -63,11 +63,11 @@ complementGenome(gen, "Changes.txt")
 def turnToRna(s, file):
 	metagrafh = {'T': 'U'}
 	rna = ''
-	with open(file, 'w') as changesfile:
+	with open(file, 'a') as changesfile:
 		for base in s:
 			rna = rna + metagrafh[base]
 			changesfile.write(rna, 'a')
-			changesfile.write('\n')
+	changesfile.write('\n')
 	changesfile.close()
 turnToRna(gen, "Changes.txt")
 
