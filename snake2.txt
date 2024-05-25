@@ -26,6 +26,7 @@ def readDna(file):
 		for line in dna:
 			if not line[0] == '>':
 				sequence += line.rstrip()
+	close(file)
 	return sequence
 gen = readDna('Sequence.txt')
 print(gen, '\n')
@@ -112,4 +113,5 @@ def countBases(s, file):
 		count_file.write(percent_gc)
 	count_file.close()
 countBases(gen, "Count.txt")
+
 
