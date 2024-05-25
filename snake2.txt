@@ -24,7 +24,7 @@ print(gen)
 #function to find matches
 def findTranscriptionFactors(s):
 	i = 0
-	matches = open("Matches.txt", "a")
+	matches = open("Matches.txt", 'a')
 	f1 = 0
 	f2 = 0
 	f3 = 0
