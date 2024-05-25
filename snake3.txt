@@ -1,0 +1,106 @@
+import re
+import collections
+
+tf1 = 'BHTGTGGTYW'
+p1 = r"([^A][^G](TGTGGT)[CT][AT])"
+
+tf2 = 'WGACAGB'
+p2 = r"([AT](GACAG)[^A])"
+
+tf3 = 'BTGGGARD'
+p3 = r"([^A](TGGGA)[AG][^C])"
+
+#function to read the sequence
+def readDna(file):
+	sequence = ''
+	with open(file, 'r') as dna:
+		for line in dna:
+			if not line[0] == '>':
+				sequence += line.rstrip()
+	dna.close()
+	return sequence
+gen = readDna('Sequence.txt')
+print(gen, '\n')
+
+#function to find matches
+def findTranscriptionFactors(s):
+	i = 0
+	matches = open("Matches.txt", 'a')
+	f1 = 0
+	f2 = 0
+	f3 = 0
+	while i < len(s):
+		i += 1
+		find1 = re.finditer(p1, s)
+		find2= re.finditer(p2, s)
+		find3 = re.finditer(p3, s)
+		
+	if find1 :
+		f1 += 1
+		matches.write(str(find1.start()))
+		matches.write('\n')
+		print('Match found for' + tf1 + 'at position' + find1.start() + '\n')
+	if found2:
+		f2 += 1
+		matches.write(str(find2.start()))
+		matches.write('\n')
+		print('Match found for' + tf2 + 'at position' + find2.start() + '\n')
+	if found3:
+		f3 += 1
+		matches.write(str(find3.start()))
+		matches.write('\n')
+		print('Match found for' + tf3 + 'at position' + find3.start() + '\n')
+
+	matches.close()
+findTranscriptionFactors(gen)
+
+
+#function to complement the given sequence
+def complementGenome(s, file):
+	complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+	emoneg = ''
+	with open(file, 'a') as changes_file:
+		for base in s:
+			emoneg = emoneg + complement[base]
+			changes_file.write(emoneg)
+	changes_file.write('\n')
+	changes_file.close()
+complementGenome(gen, "Changes.txt")
+
+
+#function to create the sequence after transcription to rna
+def turnToRna(s, file):
+	transcr = {'T': 'U'}
+	rna = ''
+	with open(file, 'a') as changes_file:
+		for base in s:
+			rna = rna + transcr[base]
+			changes_file.write(rna)
+	changes_file.write('\n')
+	changes_file.close()
+turnToRna(gen, "Changes.txt")
+
+
+#function to count how many times each base appears in given sequence
+#and to calculate percentage of CG compared to other bases
+def countBases(s, file):
+	seq_length = len(s)
+	print('Total number of bases:', seq_length)
+	char_count = collections.Counter(s)
+	print('Number of occurences of each base in sequence:', char_count)
+	gc = 0
+	percent_gc = 0
+	for c in s:
+		for i in range(len(s)):
+			if s[i] == 'C' or s[i] == 'G':
+				gc += 1
+	if gc > 0:
+		percent_gc = seq_length / gc * 100	
+	with open(file, 'a') as count_file:
+		count_file.write(seq_length)
+		count_file.write('\n')
+		count_file.write(char_count)
+		count_file.write('\n')
+		count_file.write(percent_gc)
+	count_file.close()
+countBases(gen, "Count.txt")
