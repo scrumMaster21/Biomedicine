@@ -9,6 +9,7 @@ p2 = r"([AT](GACAG)[^A])"
 tf3 = 'BTGGGARD'
 p3 = r"([^A](TGGGA)[AG][^C])"
 
+#function to read the sequence
 def readDna(file)
 	sequence = ''
 	with open(file, 'r') as dna:
@@ -19,6 +20,7 @@ def readDna(file)
 gen = readDna('Sequence.txt')
 print(gen)
 
+#function to find matches
 def findTranscriptionFactors(s):
 	i = 0
 	matches = open("Matches.txt", "a")
@@ -48,6 +50,7 @@ def findTranscriptionFactors(s):
 findTranscriptionFactors(gen)
 
 
+#function to complement the given sequence
 def complementGenome(s, file):
 	complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
 	emoneg = ''
@@ -60,6 +63,7 @@ def complementGenome(s, file):
 complementGenome(gen, "Changes.txt")
 
 
+#function to create the sequence after transcription to rna
 def turnToRna(s, file):
 	metagrafh = {'T': 'U'}
 	rna = ''
@@ -72,6 +76,7 @@ def turnToRna(s, file):
 turnToRna(gen, "Changes.txt")
 
 
+#function to count how many times each base appears
 def countBases(s):
 	number = {'A': 0, 'T': 0, 'C': 0, 'G': 0}
 	for base in s:
