@@ -25,7 +25,7 @@ def readDna(file):
 				sequence += line.rstrip()
 	return sequence
 gen = readDna('Sequence.txt')
-print(gen)
+print(gen, '\n')
 
 #function to find matches
 def findTranscriptionFactors(s):
@@ -92,13 +92,14 @@ def countBases(s, file):
 	print('Number of occurences of each base in sequence:', char_count)
 	gc = 0
 	percent_gc = 0
-		for c in s:
-			for i in range(len(s)):
-				if s[i] == 'C' or s[i] == 'G':
-					gc += 1
+	for c in s:
+		for i in range(len(s)):
+			if s[i] == 'C' or s[i] == 'G':
+				gc += 1
 	if gc > 0:
 		percent_gc = seq_length / gc * 100	
 	with open(file, 'a') as count_file:
 		count_file.write(seq_length, char_count, percent_gc)
 	count_file.close()
 countBases(gen, "Count.txt")
+
