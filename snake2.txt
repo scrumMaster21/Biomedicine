@@ -4,6 +4,9 @@
 #python nameoffile
 #exit() #gia na stamathsoume na trexoume python
 
+#Exw balei to sequence pou mas dinei h ekfwnhsh se ena txt arxeio me onoma Sequence kai to exw valei sto idio directory(Desktop tou ypologisth m
+#Mexri stigmhs diavazei to sequence alla den kanei ayta pou lene oi synarthseis dld den kanei print k den dhmiourgei ta arxeia pou theloume
+
 import re
 import collections
 
