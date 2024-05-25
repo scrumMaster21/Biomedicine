@@ -45,15 +45,18 @@ def findTranscriptionFactors(s):
 		
 	if find1 :
 		f1 += 1
-		matches.write(find1, '\n')
+		matches.write(find1)
+		matches.write('\n')
 		print('Match found for' + tf1 + 'at position' + find1.start())
 	if found2:
 		f2 += 1
-		matches.write(find2, '\n')
+		matches.write(find2)
+		matches.write('\n')
 		print('Match found for' + tf2 + 'at position' + find2.start())
 	if found3:
 		f3 += 1
-		matches.write(find3, '\n')
+		matches.write(find3)
+		matches.write('\n')
 		print('Match found for' + tf3 + 'at position' + find3.start())
 
 	matches.close()
@@ -102,7 +105,11 @@ def countBases(s, file):
 	if gc > 0:
 		percent_gc = seq_length / gc * 100	
 	with open(file, 'a') as count_file:
-		count_file.write(seq_length, char_count, percent_gc)
+		count_file.write(seq_length)
+		count_file.write('\n')
+		count_file.write(char_count)
+		count_file.write('\n')
+		count_file.write(percent_gc)
 	count_file.close()
 countBases(gen, "Count.txt")
 
