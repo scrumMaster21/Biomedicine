@@ -41,19 +41,19 @@ def findTranscriptionFactors(s):
 		
 	if find1 :
 		f1 += 1
-		matches.write('{find1.start()}')
+		matches.write('%d' % find1.start())
 		matches.write('\n')
-		print(f'Match found for ' + tf1 + ' at position ' + '{find1.start()}' + '\n')
-	if find2:
-		f2 += 1
-		matches.write('{find2.start()}')
-		matches.write('\n')
-		print('Match found for ' + tf2 + ' at position ' + '{find2.start()}' + '\n')
-	if find3:
-		f3 += 1
-		matches.write('{find3.start()}')
-		matches.write('\n')
-		print('Match found for ' + tf3 + ' at position ' + '{find3.start()}' + '\n')
+		print(f'Match found for ' + tf1 + ' at position: %d\n' % find1.start())
+	#if find2:
+	#	f2 += 1
+	#	matches.write('{find2.start()}')
+	#	matches.write('\n')
+	#	print('Match found for ' + tf2 + ' at position: ' + '{find2.start()}' + '\n')
+	#if find3:
+	#	f3 += 1
+	#	matches.write('{find3.start()}')
+	#	matches.write('\n')
+	#	print('Match found for ' + tf3 + ' at position: ' + '{find3.start()}' + '\n')
 
 	matches.close()
 findTranscriptionFactors(gen)
