@@ -44,17 +44,17 @@ def findTranscriptionFactors(s):
 		f1 += 1
 		matches.write('{find1.start()}')
 		matches.write('\n')
-		print('Match found for' + tf1 + 'at position' + '{find1.start()}' + '\n')
+		print('Match found for' + tf1 + ' at position' + '{find1.start()}' + '\n')
 	if find2:
 		f2 += 1
 		matches.write('{find2.start()}')
 		matches.write('\n')
-		print('Match found for' + tf2 + 'at position' + '{find2.start()}' + '\n')
+		print('Match found for' + tf2 + ' at position' + '{find2.start()}' + '\n')
 	if find3:
 		f3 += 1
 		matches.write('{find3.start()}')
 		matches.write('\n')
-		print('Match found for' + tf3 + 'at position' + '{find3.start()}' + '\n')
+		print('Match found for' + tf3 + ' at position' + '{find3.start()}' + '\n')
 
 	matches.close()
 findTranscriptionFactors(gen)
@@ -68,7 +68,6 @@ def complementGenome(s, file):
 		for base in s:
 			emoneg = emoneg + complement[base]
 			changes_file.write(emoneg)
-	changes_file.write('\n')
 	changes_file.close()
 complementGenome(gen, "Changes.txt")
 
