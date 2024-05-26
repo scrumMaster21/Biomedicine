@@ -44,17 +44,17 @@ def findTranscriptionFactors(s):
 		f1 += 1
 		matches.write('{find1.start()}')
 		matches.write('\n')
-		print('Match found for' + tf1 + ' at position' + '{find1.start()}' + '\n')
+		print('Match found for' + tf1 + ' at position' + ' {find1.start()}' + '\n')
 	if find2:
 		f2 += 1
 		matches.write('{find2.start()}')
 		matches.write('\n')
-		print('Match found for' + tf2 + ' at position' + '{find2.start()}' + '\n')
+		print('Match found for' + tf2 + ' at position' + ' {find2.start()}' + '\n')
 	if find3:
 		f3 += 1
 		matches.write('{find3.start()}')
 		matches.write('\n')
-		print('Match found for' + tf3 + ' at position' + '{find3.start()}' + '\n')
+		print('Match found for' + tf3 + ' at position' + ' {find3.start()}' + '\n')
 
 	matches.close()
 findTranscriptionFactors(gen)
@@ -76,13 +76,13 @@ complementGenome(gen, "Changes.txt")
 def turnToRna(s, file):
 	transcr = {'T': 'U'}
 	rna = ''
-	with open(file, 'a') as changes_file:
+	with open(file, 'a') as transcr_file:
 		for base in s:
 			rna = rna + transcr[base]
-			changes_file.write(rna)
-	changes_file.write('\n')
-	changes_file.close()
-turnToRna(gen, "Changes.txt")
+			transcr_file.write(rna)
+	transcr_file.write('\n')
+	transcr_file.close()
+turnToRna(gen, "Rna.txt")
 
 
 #function to count how many times each base appears in given sequence
