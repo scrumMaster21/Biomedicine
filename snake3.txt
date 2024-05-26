@@ -23,9 +23,8 @@ def readDna(file):
 			if not line[0] == '>':
 				sequence += line.rstrip()
 	dna.close()
-	return sequence
+	print(sequence, '\n')
 gen = readDna('Sequence.txt')
-print(gen, '\n')
 
 #function to find matches
 def findTranscriptionFactors(s):
@@ -44,17 +43,17 @@ def findTranscriptionFactors(s):
 		f1 += 1
 		matches.write('{find1.start()}')
 		matches.write('\n')
-		print('Match found for ' + tf1 + ' at position' + ' {find1.start()}' + '\n')
+		print(f'Match found for ' + tf1 + ' at position ' + '{find1.start()}' + '\n')
 	if find2:
 		f2 += 1
 		matches.write('{find2.start()}')
 		matches.write('\n')
-		print('Match found for ' + tf2 + ' at position' + ' {find2.start()}' + '\n')
+		print('Match found for ' + tf2 + ' at position ' + '{find2.start()}' + '\n')
 	if find3:
 		f3 += 1
 		matches.write('{find3.start()}')
 		matches.write('\n')
-		print('Match found for ' + tf3 + ' at position' + ' {find3.start()}' + '\n')
+		print('Match found for ' + tf3 + ' at position ' + '{find3.start()}' + '\n')
 
 	matches.close()
 findTranscriptionFactors(gen)
@@ -65,11 +64,12 @@ def complementGenome(s, file):
 	complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
 	emoneg = ''
 	with open(file, 'a') as changes_file:
-		for base in s:
-			emoneg = emoneg + complement[base]
+		for i in s:
+			emoneg = emoneg + complement[i]
 			changes_file.write(emoneg)
 	changes_file.close()
 complementGenome(gen, "Changes.txt")
+readDna("Changes.txt")
 
 
 
@@ -78,11 +78,12 @@ def turnToRna(s, file):
 	transcr = {'T': 'U', 'A': 'A', 'C': 'C', 'G': 'G'}
 	rna = ''
 	with open(file, 'a') as transcr_file:
-		for base in s:
-			rna = rna + transcr[base]
+		for i in s:
+			rna = rna + transcr[i]
 			transcr_file.write(rna)
 	transcr_file.close()
 turnToRna(gen, "Rna.txt")
+readDna("Rna.txt")
 
 
 #function to count how many times each base appears in given sequence
