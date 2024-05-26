@@ -1,7 +1,7 @@
 #####Gia thn ektelesh se terminal:
 #cd [path gia to arxeio]
 #python nameoffile
-#exit()
+#exit() (gia na stamathsoume na trexoume python)
 
 import re
 import collections
