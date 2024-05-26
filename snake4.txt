@@ -22,14 +22,15 @@ def readDna(file):
 gen = readDna('Sequence.txt')
 print(gen, '\n')
 
+
 #function to find matches
 def findTranscriptionFactors(s, file):
 	for i in s:
 			found1 = re.finditer(p1, s)
-			with open("Matches.txt", 'a') as matches:
-				print(f"Match found at position: {found1.start()}\n")
-				matches.write(f"Match found at position: {found1.start()}\n")
-findTranscriptionFactors(gen, 'Matches.txt')
+			with open('Finds.txt', 'a') as matches:
+				print(f'Match found for ' + tf1 ' at position: {found1.start()} of genome\n')
+				matches.write(f'Match found for ' + tf1 ' at position: {found1.start()} of genome\n')
+findTranscriptionFactors(gen, 'Finds.txt')
 
 
 
