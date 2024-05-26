@@ -1,12 +1,7 @@
 #####Gia thn ektelesh se terminal:
-#python
-#cd [to path pou vrisketai to arxeio]
+#cd [path gia to arxeio]
 #python nameoffile
-#exit() #gia na stamathsoume na trexoume python
-
-#Exw balei to sequence pou mas dinei h ekfwnhsh se ena txt arxeio me onoma Sequence kai to exw valei sto idio directory(Desktop tou ypologisth m
-#Mexri stigmhs diavazei to sequence alla den kanei ayta pou lene oi synarthseis dld den kanei print k den dhmiourgei ta arxeia pou theloume
-#Dhmiourgei mono to matches alla einai keno kai bgazei errors gia to finditer kai to start
+#exit()
 
 import re
 import collections
@@ -47,19 +42,19 @@ def findTranscriptionFactors(s):
 		
 	if find1 :
 		f1 += 1
-		matches.write(str(find1.start()))
+		matches.write('{find1.start()}')
 		matches.write('\n')
-		print('Match found for' + tf1 + 'at position' + find1.start() + '\n')
-	if found2:
+		print('Match found for' + tf1 + 'at position' + '{find1.start()}' + '\n')
+	if find2:
 		f2 += 1
-		matches.write(str(find2.start()))
+		matches.write('{find2.start()}')
 		matches.write('\n')
-		print('Match found for' + tf2 + 'at position' + find2.start() + '\n')
-	if found3:
+		print('Match found for' + tf2 + 'at position' + '{find2.start()}' + '\n')
+	if find3:
 		f3 += 1
-		matches.write(str(find3.start()))
+		matches.write('{find3.start()}')
 		matches.write('\n')
-		print('Match found for' + tf3 + 'at position' + find3.start() + '\n')
+		print('Match found for' + tf3 + 'at position' + '{find3.start()}' + '\n')
 
 	matches.close()
 findTranscriptionFactors(gen)
