@@ -99,7 +99,7 @@ def countBases(s, file):
 			if s[i] == 'C' or s[i] == 'G':
 				gc += 1
 	if gc > 0:
-		percent_gc = seq_length / gc * 100	
+		percent_gc = (gc / seq_length) * 100	
 		print('Percentage of "CG" compared to other bases in given sequence is:', percent_gc, '\n')
 	with open(file, 'a') as count_file:
 		count_file.write(str(seq_length))
