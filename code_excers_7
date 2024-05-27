@@ -1,0 +1,92 @@
+import re
+from Bio import SeqIO
+from Bio.Seq import Seq
+
+# Ορισμός κωδίκων ασάφειας (adjusted to only include A, T, C, and G)
+ambiguity_codes = {}  # No ambiguity codes needed for this approach
+
+# Βιβλιοθήκες για κανονικές εκφράσεις
+regex_library = re
+
+# Λίστα με τα consensus sequences
+consensus_sequences = {
+    "RUNX1": "BHTGTGGTYW",
+    "TGIF1": "WGACAGB",
+    "IKZF1": "BTGGGARD",
+}
+
+
+def find_consensus_sequences(sequence, consensus_seq):
+    # Restrict pattern to characters used in consensus sequences (A, T, C, G)
+    consensus_seq_re = re.sub(r"[^ATCG]", lambda match: "", consensus_seq)
+
+    # Εύρεση όλων των εμφανίσεων της consensus sequence στην ακολουθία
+    matches = regex_library.finditer(consensus_seq_re, sequence)
+
+    # Αποθήκευση θέσεων εμφάνισης
+    positions = []
+    for match in matches:
+        positions.append((match.start(), match.end()))
+
+    return positions
+
+
+def sequence_statistics(sequence):
+    # Υπολογισμός αριθμού βάσεων
+    num_bases = len(sequence)
+
+    # Υπολογισμός ποσοστού CG
+    cg_count = sequence.count("CG") + sequence.count("GC")
+    cg_percent = (cg_count / num_bases) * 100
+
+    # Επιστροφή στατιστικών
+    return {"Αριθμός βάσεων": num_bases, "Ποσοστό CG": cg_percent}
+
+
+def transcribe_dna(sequence):
+    # Αντικατάσταση θυμίνης (T) με ουρακίλη (U)
+    transcribed_sequence = sequence.replace("T", "U")
+
+    return transcribed_sequence
+
+
+def complement_dna(sequence):
+    # Αντικατάσταση βάσεων με το συμπλήρωμά τους
+    complement_dict = {"A": "T", "T": "A", "C": "G", "G": "C"}
+    complemented_sequence = ""
+    for base in sequence:
+        complemented_sequence += complement_dict[base]
+
+    return complemented_sequence
+
+
+# Προσπάθεια ανοίγματος αρχείου FASTA (ελέγξτε το μονοπάτι)
+try:
+    with open("sequence.fasta", "r") as f:
+        for record in SeqIO.parse(f, "fasta"):
+            dna_sequence = record.seq
+except FileNotFoundError:
+    print("Δεν βρέθηκε αρχείο sequence.fasta. Βεβαιωθείτε ότι υπάρχει!")
+    exit()
+
+# Μετατροπή της ακολουθίας DNA σε string
+dna_string = str(dna_sequence)
+
+
+# Εκτέλεση ανάλυσης για κάθε consensus sequence
+for tf_name, consensus_seq in consensus_sequences.items():
+    # Εύρεση θέσεων εμφάνισης
+    positions = find_consensus_sequences(dna_string, consensus_seq)
+
+    # Αποθήκευση θέσεων σε αρχείο
+    with open(f"{tf_name}_positions.txt", "w") as f:
+        for start, end in positions:
+            f.write(f"{start}-{end}\n")
+
+# Υπολογισμός στατιστικών ακολουθίας
+sequence_stats = sequence_statistics(dna_sequence)
+
+# Αποθήκευση στατιστικών σε αρχείο
+with open("sequence_statistics.txt", "w") as f:
+    for stat_name, stat_value in sequence_stats.items():
+        f.write(f"{stat_name}: {stat_value}\n")
