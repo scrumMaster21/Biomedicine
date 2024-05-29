@@ -1,0 +1,39 @@
+import re
+import collections
+from Bio import SeqIO
+
+# Read the DNA sequence from the file (make sure to adjust the file path)
+try:
+    with open("sequence.fasta", "r") as f:
+        for record in SeqIO.parse(f, "fasta"):
+            dna_sequence = record.seq
+except FileNotFoundError:
+    print("Δεν βρέθηκε αρχείο sequence.fasta. Βεβαιωθείτε ότι υπάρχει!")
+    exit()
+
+# Convert the DNA sequence to a string
+dna_string = str(dna_sequence)
+
+# Define transcription factors
+tf1 = r'([^A][^G](TGTGGT)[CT][AT])'
+
+tf2 = r'([AT](GACAG)[^A])'
+
+tf3 =r'([^A](TGGGA)[AG][^C])'
+
+# Search for tf1 occurrences
+found1 = re.finditer(tf1, dna_string)
+for match in found1:
+    print(f"TF1 found at position {match.start()}")
+
+# Search for tf2 occurrences
+found2 = re.finditer(tf2, dna_string)
+for match in found2:
+    print(f"TF2 found at position {match.start()}")
+
+# Search for tf3 occurrences
+found3 = re.finditer(tf3, dna_string)
+for match in found3:
+    print(f"TF3 found at position {match.start()}")
+
+#Παρακαλώ δημιουργήστε ένα fasta αρχείο με τη συμβολοσειρά που θέλετε να ελένξετε και όνομα sequence.fasta
