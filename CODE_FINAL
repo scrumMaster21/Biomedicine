@@ -17,15 +17,6 @@ p2 = r'([AT](GACAG)[^A])'
 tf3 = 'BTGGGARD'
 p3 = r'([^A](TGGGA)[AG][^C])'
 
-#function to read the sequence
-#def readDna(file):
-	#sequence = ''
-	#with open(file, 'r') as dna:
-	#	for line in dna:
-	#		if not line[0] == '>':
-	#			sequence += line.rstrip()
-	#dna.close()
-	#return sequence
 	
 #read the sequence from file "Sequence.txt"
 try:
